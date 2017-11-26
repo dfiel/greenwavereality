@@ -11,5 +11,5 @@ setup(name='greenwavecontrol',
           'License :: OSI Approved :: MIT Software License',
           'Programming Language :: Python :: 3'
       ],
-      packages=['greenwavecontrol'],
-})
+      packages=['greenwavecontrol']
+)
