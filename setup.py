@@ -1,7 +1,6 @@
 from setuptools import setup
 setup(name='greenwavecontrol',
       description='Greenwave Reality Smart Bulb Interface Library',
-      long_description=long_description,
       version='0.1',
       url='https://github.com/dfiel/greenwavecontrol',
       author='David Fiel',
