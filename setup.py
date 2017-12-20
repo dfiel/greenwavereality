@@ -1,14 +1,12 @@
 from setuptools import setup
-setup(name='greenwavecontrol',
-      description='Greenwave Reality Smart Bulb Interface Library',
-      version='0.1',
-      url='https://github.com/dfiel/greenwavecontrol',
-      author='David Fiel',
-      author_email='greenwave@dfiel.com',
-      license='MIT',
-      classifiers=[
-          'License :: OSI Approved :: MIT Software License',
-          'Programming Language :: Python :: 3'
-      ],
-      packages=['greenwavecontrol']
+
+setup(
+    name='greenwavecontrol',
+    version='0.1',
+    packages=[''],
+    url='https://github.com/dfiel/greenwavecontrol',
+    license='MIT',
+    author='David Fiel',
+    author_email='github@dfiel.com',
+    description='Control of Greenwave Reality Lights'
 )
