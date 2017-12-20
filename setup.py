@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='greenwavecontrol',
-    version='0.1',
+    version='0.1.2',
     packages=[''],
     install_requires=[
           'requests',
