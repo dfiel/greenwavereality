@@ -1,14 +1,14 @@
 from setuptools import setup
 
 setup(
-    name='greenwavecontrol',
+    name='greenwavereality',
     version='0.1.2',
     packages=[''],
     install_requires=[
           'requests',
           'xmltodict',
       ],
-    url='https://github.com/dfiel/greenwavecontrol',
+    url='https://github.com/dfiel/greenwavereality',
     license='MIT',
     author='David Fiel',
     author_email='github@dfiel.com',
