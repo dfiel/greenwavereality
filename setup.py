@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='greenwavereality',
     version='0.1.2',
-    packages=[''],
+    packages=['greenwavereality'],
     install_requires=[
           'requests',
           'xmltodict',
