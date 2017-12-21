@@ -1,1 +1,1 @@
-import greenwavereality
+import greenwavereality.greenwavereality
