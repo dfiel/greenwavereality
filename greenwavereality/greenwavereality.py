@@ -19,7 +19,6 @@ def set_brightness(host, did, value, token=None):
     if not token:
         scheme = "http"
         token = "1234567890"
-    value = int((float(value)/255)*100)
     url = (scheme + '://' + host + '/gwr/gop.php?cmd=DeviceSendCommand&data=<gip><version>1</version><token>' + token + '</token><did>' + did + '</did><value>' + str(value) + '</value><type>level</type></gip>&fmt=xml')
     response = requests.get(url)
     if response.status_code == '200':
@@ -27,7 +26,7 @@ def set_brightness(host, did, value, token=None):
     else:
         return False
 
-def get_brightness(device):
+def hass_brightness(device):
     if 'level' in device:
         level = int((int(device['level'])/100)*255)
         return level
