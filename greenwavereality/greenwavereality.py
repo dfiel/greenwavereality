@@ -65,4 +65,6 @@ def check_online(device):
 def grab_token(host, email, password):
     url = ('https://' + host + '/gwr/gop.php?cmd=GWRLogin&data=<gip><version>1</version><email>' + str(email) + '</email><password>' + str(password) + '</password></gip>&fmt=xml')
     response = requests.get(url, verify=False)
-    return response.content
+    dict = xmltodict.parse(response)
+    dict = dict['gzip']['token']
+    return dict
