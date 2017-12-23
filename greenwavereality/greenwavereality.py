@@ -1,7 +1,9 @@
 import requests
 import xmltodict
+import urllib3
 
 def grab_xml(host, token=None):
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     if token:
         scheme = "https"
     if not token:
@@ -14,6 +16,7 @@ def grab_xml(host, token=None):
     return dict
   
 def set_brightness(host, did, value, token=None):
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     if token:
         scheme = "https"
     if not token:
@@ -34,6 +37,7 @@ def hass_brightness(device):
         return 0
 
 def turn_on(host, did, token=None):
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     if token:
         scheme = "https"
     if not token:
@@ -47,6 +51,7 @@ def turn_on(host, did, token=None):
         return False
 
 def turn_off(host, did, token=None):
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     if token:
         scheme = "https"
     if not token:
@@ -63,6 +68,7 @@ def check_online(device):
     return 'offline' not in device
 
 def grab_token(host, email, password):
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     url = ('https://' + host + '/gwr/gop.php?cmd=GWRLogin&data=<gip><version>1</version><email>' + str(email) + '</email><password>' + str(password) + '</password></gip>&fmt=xml')
     response = requests.get(url, verify=False)
     dict = xmltodict.parse(response.content)
