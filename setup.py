@@ -7,6 +7,7 @@ setup(
     install_requires=[
           'requests',
           'xmltodict',
+          'urllib3',
       ],
     url='https://github.com/dfiel/greenwavereality',
     license='MIT',
