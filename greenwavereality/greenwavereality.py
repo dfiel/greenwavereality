@@ -13,9 +13,9 @@ def grab_xml(host, token=None):
     url = (
             scheme + '://' + host + '/gwr/gop.php?cmd=GWRBatch&data=<gwrcmds><gwrcmd><gcmd>RoomGetCarousel</gcmd><gdata><gip><version>1</version><token>' + token + '</token><fields>name,status</fields></gip></gdata></gwrcmd></gwrcmds>&fmt=xml')
     response = requests.get(url, verify=False)
-    dict = xmltodict.parse(response.content)
-    dict = dict['gwrcmds']['gwrcmd']['gdata']['gip']['room']['device']
-    return dict
+    parsed = xmltodict.parse(response.content)
+    parsed = parsed['gwrcmds']['gwrcmd']['gdata']['gip']['room']['device']
+    return parsed
 
 
 def set_brightness(host, did, value, token=None):
@@ -85,6 +85,6 @@ def grab_token(host, email, password):
     response = requests.get(url, verify=False)
     if '<rc>404</rc>' in response.text:
         raise PermissionError('Not In Pairing Mode')
-    dict = xmltodict.parse(response.content)
-    dict = dict['gip']['token']
-    return dict
+    parsed = xmltodict.parse(response.content)
+    parsed = parsed['gip']['token']
+    return parsed
