@@ -13,7 +13,7 @@ def grab_xml(host, token=None):
     url = (
             scheme + '://' + host + '/gwr/gop.php?cmd=GWRBatch&data=<gwrcmds><gwrcmd><gcmd>RoomGetCarousel</gcmd><gdata><gip><version>1</version><token>' + token + '</token><fields>name,status</fields></gip></gdata></gwrcmd></gwrcmds>&fmt=xml')
     response = requests.get(url, verify=False)
-    parsed = xmltodict.parse(response.content)
+    parsed = xmltodict.parse(response.content, force_list={'room', 'device'})
     parsed = parsed['gwrcmds']['gwrcmd']['gdata']['gip']['room']
     return parsed
 
