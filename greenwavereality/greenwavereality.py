@@ -88,3 +88,11 @@ def grab_token(host, email, password):
     parsed = xmltodict.parse(response.content)
     parsed = parsed['gip']['token']
     return parsed
+
+def grab_bulbs(host, token=None):
+    xml = grab_xml(host, token)
+    bulbs = {}
+    for room in xml:
+        for device in room['device']:
+            bulbs[int(device['did'])] = device
+    return bulbs
