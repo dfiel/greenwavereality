@@ -11,8 +11,7 @@ def grab_xml(host, token=None):
     if not token:
         scheme = "http"
         token = "1234567890"
-    url = (
-            scheme + '://' + host + '/gwr/gop.php?cmd=GWRBatch&data=<gwrcmds><gwrcmd><gcmd>RoomGetCarousel</gcmd><gdata><gip><version>1</version><token>' + token + '</token><fields>name,status</fields></gip></gdata></gwrcmd></gwrcmds>&fmt=xml')
+    url = '{}://{}/gwr/gop.php?cmd=GWRBatch&data=<gwrcmds><gwrcmd><gcmd>RoomGetCarousel</gcmd><gdata><gip><version>1</version><token>{}</token><fields>name,status</fields></gip></gdata></gwrcmd></gwrcmds>&fmt=xml'.format(scheme, host, token)    
     response = requests.get(url, verify=False)
     parsed = xmltodict.parse(response.content, force_list={'room', 'device'})
     parsed = parsed['gwrcmds']['gwrcmd']['gdata']['gip']['room']
@@ -27,9 +26,7 @@ def set_brightness(host, did, value, token=None):
     if not token:
         scheme = "http"
         token = "1234567890"
-    url = (
-            scheme + '://' + host + '/gwr/gop.php?cmd=DeviceSendCommand&data=<gip><version>1</version><token>' + token + '</token><did>' + did + '</did><value>' + str(
-        value) + '</value><type>level</type></gip>&fmt=xml')
+    url = '{}://{}/gwr/gop.php?cmd=DeviceSendCommand&data=<gip><version>1</version><token>{}</token><did>{}</did><value>{}</value><type>level</type></gip>&fmt=xml'.format(scheme, host, token, did, value) 
     response = requests.get(url, verify=False)
     if response.status_code == '200':
         return True
@@ -54,8 +51,7 @@ def turn_on(host, did, token=None):
     if not token:
         scheme = "http"
         token = "1234567890"
-    url = (
-            scheme + '://' + host + '/gwr/gop.php?cmd=DeviceSendCommand&data=<gip><version>1</version><token>' + token + '</token><did>' + did + '</did><value>1</value></gip>&fmt=xml')
+    url = '{}://{}/gwr/gop.php?cmd=DeviceSendCommand&data=<gip><version>1</version><token>{}</token><did>{}</did><value>1</value></gip>&fmt=xml'.format(scheme, host, token, did) 
     response = requests.get(url, verify=False)
     if response.status_code == '200':
         return True
@@ -71,8 +67,7 @@ def turn_off(host, did, token=None):
     if not token:
         scheme = "http"
         token = "1234567890"
-    url = (
-            scheme + '://' + host + '/gwr/gop.php?cmd=DeviceSendCommand&data=<gip><version>1</version><token>' + token + '</token><did>' + did + '</did><value>0</value></gip>&fmt=xml')
+    url = '{}://{}/gwr/gop.php?cmd=DeviceSendCommand&data=<gip><version>1</version><token>{}</token><did>{}</did><value>0</value></gip>&fmt=xml'.format(scheme, host, token, did) 
     response = requests.get(url, verify=False)
     if response.status_code == '200':
         return True
@@ -88,7 +83,7 @@ def check_online(device):
 def grab_token(host, email, password):
     """Grab token from gateway. Press sync button before running."""
     urllib3.disable_warnings()
-    url = ('https://' + host + '/gwr/gop.php?cmd=GWRLogin&data=<gip><version>1</version><email>' + str(email) + '</email><password>' + str(password) + '</password></gip>&fmt=xml')
+    url = 'https://{}/gwr/gop.php?cmd=GWRLogin&data=<gip><version>1</version><email>{}</email><password>{}</password></gip>&fmt=xml'.format(host, email, password) 
     response = requests.get(url, verify=False)
     if '<rc>404</rc>' in response.text:
         raise PermissionError('Not In Pairing Mode')
